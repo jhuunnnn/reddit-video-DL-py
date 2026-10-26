@@ -1,0 +1,3 @@
+- download fnc for the reddit link downloader
+- loop through a text file
+-
