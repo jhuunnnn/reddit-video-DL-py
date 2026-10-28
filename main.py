@@ -32,7 +32,13 @@ def mainLoop():
                 download_reddit_video(line, count)
                 count += 1
             else:
-                print("The link is not reddit link")
+                print(f"The link is not reddit link:{line}")
+                if line[0] == "f":
+                    print("Creating a folder")
+                    folder_name = line.replace("\n", "")
+                    os.makedirs(folder_name, exist_ok=True)
+                else:
+                    print("just a rumbled words")
 
 
 def checkLink(url):
@@ -41,7 +47,7 @@ def checkLink(url):
         domain = parse_url.netloc.lower()
         return "reddit.com" in domain or domain == "redd.it"
 
-    except Exception as e:
+    except Exception as e:  # noqa:BLE001
         print(f"The link is not a reddit link: Details: {e}")
         return False
 
