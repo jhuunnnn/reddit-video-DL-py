@@ -2,16 +2,19 @@ import os
 
 from RedDownloader import RedDownloader
 from urllib.parse import urlparse
+from pathlib import Path
 
 
-def download_reddit_video(reddit_url, index):
+def download_reddit_video(reddit_url, index, target_folder):
+
     try:
         print(f"Attempting to download: {reddit_url}")
 
         # Download the video (Quality options can be 360, 720, or 1080)
         RedDownloader.Download(
             url=reddit_url,
-            output=f"reddit_download_{index}",  # Name of the output file (no extension needed)
+            output=f"reddit{index}",  # Name of the output file (no extension needed)
+            # destination=str(target_folder),
             quality=720,  # Target video quality
         )
 
@@ -23,20 +26,29 @@ def download_reddit_video(reddit_url, index):
 
 
 def mainLoop():
+    target_folder = ""
     with open("testOne.txt", "r") as file:
         lines = file.readlines()
         count = 0  ##counter for the name of the video
 
         for line in lines:
             if checkLink(line) == True:
-                download_reddit_video(line, count)
+                download_reddit_video(line, count, target_folder)
                 count += 1
             else:
                 print(f"The link is not reddit link:{line}")
                 if line[0] == "f":
-                    print("Creating a folder")
-                    folder_name = line.replace("\n", "")
-                    os.makedirs(folder_name, exist_ok=True)
+                    ## clean the string in the line
+                    folder_name = line.replace("\n", "").replace("f", "")
+                    folder_path = Path(folder_name)
+                    if folder_path.exists():
+                        print(
+                            f"Folder `{folder_path}` already exists! Canceling creation."
+                        )
+                    else:
+                        print("Creating a folder")
+                        folder_path.mkdir()
+                        print("Done Creating")
                 else:
                     print("just a rumbled words")
 
