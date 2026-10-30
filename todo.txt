@@ -1,4 +1,5 @@
 x download fnc for the reddit link downloader
 x loop through a text file
-- create a folder if the link is not a reddit link
+x create a folder if the link is not a reddit link
 - output a reddit link to the specific or current folder
+    ! currently it remaining the output and does not going to the curretn folder
