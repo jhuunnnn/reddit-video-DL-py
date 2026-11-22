@@ -56,26 +56,6 @@ def mainLoop():
     except FileNotFoundError:
         print("Error: `testOne.txt` file was not found.")
 
-    # with open("testOne.txt", "r") as file:
-    #     lines = file.readlines()
-    #     count = 0  ##counter for the name of the video
-    #     target_folder = ""
-    #     for line in lines:
-    #         if checkLink(line) == True:
-    #             print(f"{target_folder}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    #             download_reddit_video(line, count, target_folder)
-    #             count += 1
-    #         else:
-    #             print(f"The link is not reddit link:{line}")
-    #             if line[0] == "f":
-    #                 folder_name = line.replace("\n", "").replace("f", "")
-    #                 target_folder = folder_name.strip()
-    #                 print(
-    #                     f"{target_folder}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    #                 )
-    #             else:
-    #                 print("just a rumbled words")
-
 
 def checkLink(url):
     try:
